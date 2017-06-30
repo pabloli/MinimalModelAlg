@@ -59,6 +59,23 @@ def mergeData(data1, data2):
 
 
 #%%
+def drawGraph2(data):
+    graph = pydot.Dot(graph_type='graph')
+    pyNodes = {}
+    print(data)
+    for n in data['members']:
+        pyNodes[n] = pydot.Node(n, fillcolor='r')
+    for n in data['name']:
+        pyNodes[n] = pydot.Node(n, fillcolor="b", shape='box')
+    for edge in data['edges']:
+            graph.add_edge(pydot.Edge(edge[0], edge[1], label='a', color='r'))
+    graph.write_png('ojj.png')
+print ("Definitions OK")
+
+
+
+
+#%%
 data = getData({'leftMembers': [], 'name': ('1'), 'rightMembers': ['a', 'b']})
 data = mergeData(data, getData(
     {'leftMembers': ['b'], 'name': ('2'), 'rightMembers': ['a']}))
@@ -71,4 +88,5 @@ data = mergeData(data, getData(
 data = mergeData(data, getData(
     {'leftMembers': ['f'], 'name': ('6'), 'rightMembers': ['e']}))
 drawGraph(data)
+drawGraph2(data)
 #%%
