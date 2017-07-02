@@ -1,3 +1,4 @@
+
 #%%
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -24,19 +25,15 @@ def getData(sentence):
              'members': leftMembers + rightMembers, 'name': name})
 
 
-
-
-
-
 #%%
 def drawGraph(data):
 
     dx = nx.DiGraph()
     #dx.add_nodes_from((leftMembers + name + rightMembers))
     dx.add_edges_from(data['edges'])
-    dx.subgraph(['e','f','d'])
+    dx.subgraph(['e', 'f', 'd'])
     pos = nx.spring_layout(dx)
-    
+
     nx.draw_networkx_labels(dx, pos, data['labels'], font_size=16)
     nx.draw_networkx_nodes(dx, pos, nodelist=data['members'], node_color='r')
     nx.draw_networkx_nodes(
@@ -75,9 +72,8 @@ def drawGraph2(data):
     for n in data['name']:
         pyNodes[n] = pydot.Node(n, fillcolor="b", shape='box')
     for edge in data['edges']:
-            graph.add_edge(pydot.Edge(edge[0], edge[1], label='a', color='r'))
+        graph.add_edge(pydot.Edge(edge[0], edge[1], label='a', color='r'))
     graph.write_png('ojj.png')
-
 
 
 
